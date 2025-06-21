@@ -17,7 +17,7 @@ Automatización de pruebas del recurso `/pet` de la API [Swagger Petstore](https
 ## Estructura del repositorio
 
 ```
-crud-petstore/
+qa-challenge-postman-newman/
 ├── CRUD-Challenge.postman_collection.json       
 ├── CRUD-Challenge.postman_environment.json      
 ├── Dockerfile                                   
