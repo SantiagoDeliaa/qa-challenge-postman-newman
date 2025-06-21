@@ -74,5 +74,3 @@ docker run --rm -v "${PWD}:/etc/newman" newman-html \
 - Publicar el artefacto `report.html` como evidencia.
 
 ---
-
-> Challenge resuelto por Santi, saludos!!!
