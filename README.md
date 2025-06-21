@@ -17,7 +17,7 @@ Automatización de pruebas del recurso `/pet` de la API [Swagger Petstore](https
 ## Estructura del repositorio
 
 ```
-crud-petstore/
+qa-challenge-postman-newman/
 ├── CRUD-Challenge.postman_collection.json       
 ├── CRUD-Challenge.postman_environment.json      
 ├── Dockerfile                                   
@@ -30,7 +30,7 @@ crud-petstore/
 ## Instalación y ejecución con Docker
 
 ### Prerequisitos
-- **Docker ≥ 20.x** (Desktop o Engine)
+- **Docker** (version 20.x o superior)
 - **Git** 
 
 1. Clonar o descargar el repo y pararse en la carpeta raiz.
@@ -74,5 +74,3 @@ docker run --rm -v "${PWD}:/etc/newman" newman-html \
 - Publicar el artefacto `report.html` como evidencia.
 
 ---
-
-> Challenge resuelto por Santi, saludos!!!
