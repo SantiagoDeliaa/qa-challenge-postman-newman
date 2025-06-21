@@ -1,0 +1,33 @@
+name: Run Newman Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-newman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t newman-html .
+
+      - name: Run Newman tests inside Docker
+        run: |
+          docker run --rm -v "${{ github.workspace }}:/etc/newman" newman-html \
+            run /etc/newman/CRUD-Challenge.postman_collection.json \
+            --environment /etc/newman/CRUD-Challenge.postman_environment.json \
+            --reporters cli,html \
+            --reporter-html-export /etc/newman/report.html \
+            --delay-request 4000
+
+      - name: Upload report.html
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-report
+          path: report.html
