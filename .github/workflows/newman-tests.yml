@@ -27,7 +27,7 @@ jobs:
             --delay-request 4000
 
       - name: Upload report.html
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: newman-report
           path: report.html
