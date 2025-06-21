@@ -18,6 +18,9 @@ Automatización de pruebas del recurso `/pet` de la API [Swagger Petstore](https
 
 ```
 qa-challenge-postman-newman/
+├──.github
+  ├──workflows
+    ├──newman-tests.yml
 ├── CRUD-Challenge.postman_collection.json       
 ├── CRUD-Challenge.postman_environment.json      
 ├── Dockerfile                                   
