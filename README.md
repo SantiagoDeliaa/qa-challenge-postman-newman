@@ -37,7 +37,10 @@ qa-challenge-postman-newman/
 2. Ejecutar las pruebas con Docker:
 
 ```bash
+# Construir la imagen Docker
 docker build -t newman-html .
+
+# Ejecutar las pruebas de la colección
 docker run --rm -v "${PWD}:/etc/newman" newman-html \
   run /etc/newman/CRUD-Challenge.postman_collection.json \
   --environment /etc/newman/CRUD-Challenge.postman_environment.json \
@@ -46,25 +49,33 @@ docker run --rm -v "${PWD}:/etc/newman" newman-html \
   --delay-request 4000    # Añado este delay porque la api respondia bastante lento
 ```
 > En PowerShell reemplazar `${PWD}` por `%cd%`
-
+  
 > Van a poder ver el resultado por consola y además genera `report.html` en la carpeta actual.
 
 > No hace falta npm/node local: la imagen Docker ya incluye Newman + reporter HTML.
 
+> Notas: La API es bastante inconsistente, sobre todo en las consultas despues de una modificación.
 ---
 
 ## Explicación de cada caso de prueba
 
+### Happy Path CRUD 
+- Se utilizan datos validos.
 - Se genera dinámicamente un ID en el `pre-request` para las pruebas.
 - Se testea que se pueda:
   - Crear una mascota (`POST`)
-  - Consultarla (`GET`)
-  - Actualizar los datos (`PUT`)
-  - Eliminarla (`DELETE`)
-- También valido que:
-  - El recurso eliminado ya no se pueda encontrar
-  - El get por "Status" traiga el response correspondiente a lo que indica Swagger
-
+    - Se verifica mediante asserts el object del response (status code, id, name, tag, etc)
+  - El filtro por "Status" traiga el response correspondiente a lo que indica Swagger (`GET`)
+    - Se verifica mediante un forEach que recorre el response que todos los status sean los filtrados ('pending')
+  - Actualizar los datos de la mascota previamente creada (`PUT`)
+    - Se verifica que los datos se actualizaron correctamente
+  - Consultar mascota (`GET`)
+    - Verificación de id creado
+  - Eliminar (`DELETE`)
+    - Se verifica en el script que el id eliminado sea el previamente generado
+  - El recurso eliminado ya no se pueda encontrar (`GET`)
+    - Se corrobora que id no exista (404 Not Found)
+   
 ---
 
 ## CI/CD
