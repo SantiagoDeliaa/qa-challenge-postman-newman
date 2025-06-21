@@ -86,7 +86,7 @@
 			"response": []
 		},
 		{
-			"name": "getById",
+			"name": "findByStatus",
 			"event": [
 				{
 					"listen": "test",
@@ -99,13 +99,14 @@
 							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
 							"});\r",
 							"\r",
-							"const body = pm.response.json();\r",
-							"const expectedId = Number(pm.environment.get('pet_id'));\r",
+							"const json = pm.response.json();\r",
 							"\r",
-							"//Validate id matches the one generated\r",
-							"pm.test(\"id validation\", () => {\r",
-							"  pm.expect(body.id).to.eql(expectedId);\r",
-							"});"
+							"pm.test(\"All status are 'pending'\", () => {\r",
+							"  json.forEach(pet => {\r",
+							"    pm.expect(pet.status).to.eql(\"pending\");\r",
+							"  });\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -116,13 +117,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BaseURL}}/pet/{{pet_id}}",
+					"raw": "{{BaseURL}}/pet/findByStatus?status={{status}}",
 					"host": [
 						"{{BaseURL}}"
 					],
 					"path": [
 						"pet",
-						"{{pet_id}}"
+						"findByStatus"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "{{status}}"
+						}
 					]
 				}
 			},
@@ -178,6 +185,49 @@
 					],
 					"path": [
 						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"\r",
+							"const body = pm.response.json();\r",
+							"const expectedId = Number(pm.environment.get('pet_id'));\r",
+							"\r",
+							"//Validate id matches the one generated\r",
+							"pm.test(\"id validation\", () => {\r",
+							"  pm.expect(body.id).to.eql(expectedId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/pet/{{pet_id}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"pet",
+						"{{pet_id}}"
 					]
 				}
 			},
@@ -257,56 +307,6 @@
 					"path": [
 						"pet",
 						"{{pet_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "findByStatus",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Response time is less than 400ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-							"});\r",
-							"\r",
-							"const json = pm.response.json();\r",
-							"\r",
-							"pm.test(\"All status are 'pending'\", () => {\r",
-							"  json.forEach(pet => {\r",
-							"    pm.expect(pet.status).to.eql(\"pending\");\r",
-							"  });\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BaseURL}}/pet/findByStatus?status={{status}}",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"pet",
-						"findByStatus"
-					],
-					"query": [
-						{
-							"key": "status",
-							"value": "{{status}}"
-						}
 					]
 				}
 			},
