@@ -4,22 +4,6 @@ Automatización de pruebas del recurso `/pet` de la API [Swagger Petstore](https
 
 ---
 
-## Estructura del repositorio
-
-```
-qa-challenge-postman-newman/
-├──.github
-  ├──workflows
-    ├──newman-tests.yml
-├── CRUD-Challenge.postman_collection.json       
-├── CRUD-Challenge.postman_environment.json      
-├── Dockerfile                                   
-├── report.html                                                               
-└── README.md
-```
-
----
-
 ## Instalación y ejecución con Docker
 
 ### Prerequisitos
