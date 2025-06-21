@@ -83,8 +83,11 @@ docker run --rm -v "${PWD}:/etc/newman" newman-html \
 
 ## CI/CD
 
-- Integrar este flujo a GitHub Actions.
-- Seviria para ejecutar automáticamente en cada push o pull request.
-- Publicar el artefacto `report.html` como evidencia.
+### GitHub Actions (Validaciones Automatizadas)
+- Integre este flujo a GitHub Actions para que corre la colección.
+- Cada vez que se realiza un `push` o `pull request`, se ejecuta Newman sobre la colección de Postman dentro de un contenedor Docker.
+- Publica el artefacto `report.html` con el resultado de las pruebas.
+- Redultado: validar de forma continua la integridad del endpoint `/pet`.
+- Archivo de workflow: .github/workflows/newman-tests.yml
 
 ---
