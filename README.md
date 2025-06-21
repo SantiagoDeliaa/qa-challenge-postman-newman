@@ -30,7 +30,7 @@ qa-challenge-postman-newman/
 ## Instalación y ejecución con Docker
 
 ### Prerequisitos
-- **Docker ≥ 20.x** (Desktop o Engine)
+- **Docker** (version 20.x o superior)
 - **Git** 
 
 1. Clonar o descargar el repo y pararse en la carpeta raiz.
