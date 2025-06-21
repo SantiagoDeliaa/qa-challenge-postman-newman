@@ -1,16 +1,6 @@
-# QA API Challenge - Swagger Petstore (Postman + Newman)
+# QA API Challenge - Postman + Newman
 
-Automatización de pruebas del recurso `/pet` de la API [Swagger Petstore](https://petstore.swagger.io/), usando **Postman** y **Newman** dentro de un entorno Docker.
-
----
-
-## Objetivo
-
-- Validar mediante automation las operaciones CRUD del endpoint `/pet`:
-  - `POST`, `GET`, `PUT`, `DELETE`
-- Ejecución `Newman`
-- Generar un **reporte HTML**
-- Dejar preparado para integración con CI/CD
+Automatización de pruebas del recurso `/pet` de la API [Swagger Petstore](https://petstore.swagger.io/) usando **Postman** y **Newman** dentro de un Docker.
 
 ---
 
